@@ -7,7 +7,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
-import pages.AccountPage;
+import pages.AccountCreationPage;
+import pages.ContactCreationPage;
 import pages.LoginPage;
 
 
@@ -18,7 +19,8 @@ public abstract class BaseTest {
 
     WebDriver driver;
     LoginPage loginPage;
-    AccountPage accountPage;
+    AccountCreationPage accountCreationPage;
+    ContactCreationPage contactCreationPage;
 
     @Parameters({"browser"})
     @BeforeMethod(description = "Настройка браузера")
@@ -40,7 +42,8 @@ public abstract class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
         loginPage = new LoginPage(driver);
-        accountPage = new AccountPage(driver);
+        accountCreationPage = new AccountCreationPage(driver);
+        contactCreationPage = new ContactCreationPage(driver);
     }
 
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")

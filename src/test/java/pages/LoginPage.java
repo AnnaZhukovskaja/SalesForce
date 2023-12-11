@@ -13,13 +13,14 @@ public class LoginPage extends BasePage{
         super(driver);
     }
 
-    public void open() {
+    public LoginPage open() {
         driver.get(BASE_URL);
+        return this;
     }
 
-    public void login(String email, String password) {
+    public MainPage login(String email, String password) {
         driver.findElement(USER_NAME).sendKeys(email);
         driver.findElement(PASSWORD).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).click();
-    }
+    return  new MainPage(driver);}
 }
