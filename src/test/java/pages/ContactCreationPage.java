@@ -1,11 +1,12 @@
 package pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import wrappers.Input;
 import wrappers.PickList;
 import wrappers.TextArea;
-
+@Log4j2
 public class ContactCreationPage extends BasePage {
 
     private final By SAVE_BUTTON = By.xpath("//*[@name='SaveEdit']");
@@ -17,6 +18,7 @@ public class ContactCreationPage extends BasePage {
     }
 
     public ContactCreationPage open() {
+        log.info("Opening creation page");
         driver.get(BASE_URL + "lightning/o/Contact/new");
         return this;
     }
@@ -26,6 +28,7 @@ public class ContactCreationPage extends BasePage {
                               String asstPhone, String momsEmail, String mailingCity, String mailingStateProvince, String otherCity,
                               String otherStateProvince, String mailingZipPostalCode, String mailingCountry, String otherZipPostalCode,
                               String otherCountry, String languages, String mailingStreet, String otherStreet, String description) {
+        log.info("Creating contact");
         new Input(driver,"Phone").write(phone);
         new Input(driver,"Home Phone").write(homePhone);
         new PickList(driver,"Salutation").select("Prof.");
@@ -58,10 +61,12 @@ public class ContactCreationPage extends BasePage {
     }
 
     public void saveDate() {
+        log.info("Saving date for an contact");
         driver.findElement(SAVE_BUTTON).click();
     }
 
     public String getTitle() {
+        log.info("Getting title after saving");
         waitForPageLoaded();
         return driver.findElement(TITLE).getText();
     }

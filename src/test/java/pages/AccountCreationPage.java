@@ -1,11 +1,14 @@
 package pages;
 
+import dto.Account;
+import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import wrappers.Input;
 import wrappers.PickList;
 import wrappers.TextArea;
-
+@Log4j2
 public class AccountCreationPage extends BasePage{
 
     private final By SAVE_BUTTON = By.xpath("//*[@name='SaveEdit']");
@@ -16,54 +19,53 @@ public class AccountCreationPage extends BasePage{
     }
 
     public AccountCreationPage open() {
+        log.info("Opening creation page");
         driver.get(BASE_URL + "lightning/o/Account/new");
         return this;
     }
-
-    public AccountCreationPage createAccount(String accountName, String accountNumber, String phone, String fax, String website,
-                              String accountSite, String tickerSymbol,String employees, String annualRevenue, String sicCode,
-                              String billingCity, String billingStateProvince, String shippingCity, String shippingStateProvince,
-                              String billingZipPostalCode, String billingCountry, String shippingZipPostalCode, String shippingCountry,
-                              String slaSerialNumber, String numberOfLocations, String billingStreet, String shippingStreet, String description) {
-
+    @Step("Creating account: '{account.accountName}'")
+    public AccountCreationPage createAccount(Account account) {
+        log.info("Creating account: '{}'", account);
         new PickList(driver,"Rating").select("Cold");
-        new Input(driver,"Account Name").write(accountName + Math.random());
-        new Input(driver,"Phone").write(phone);
-        new Input(driver,"Fax").write(fax);
-        new Input(driver,"Account Number").write(accountNumber);
-        new Input(driver,"Website").write(website);
-        new Input(driver,"Account Site").write(accountSite);
-        new Input(driver,"Ticker Symbol").write(tickerSymbol);
+        new Input(driver,"Account Name").write(account.getAccountName() + Math.random());
+        new Input(driver,"Phone").write(account.getPhone());
+        new Input(driver,"Fax").write(account.getFax());
+        new Input(driver,"Account Number").write(account.getAccountNumber());
+        new Input(driver,"Website").write(account.getWebsite());
+        new Input(driver,"Account Site").write(account.getAccountSite());
+        new Input(driver,"Ticker Symbol").write(account.getTickerSymbol());
         new PickList(driver,"Type").select("Other");
         new PickList(driver,"Ownership").select("Public");
-        new Input(driver,"Employees").write(employees);
-        new Input(driver,"Annual Revenue").write(annualRevenue);
-        new Input(driver,"SIC Code").write(sicCode);
+        new Input(driver,"Employees").write(account.getEmployees());
+        new Input(driver,"Annual Revenue").write(account.getAnnualRevenue());
+        new Input(driver,"SIC Code").write(account.getSicCode());
         new PickList(driver,"Industry").select("Banking");
-        new TextArea(driver,"Billing Street").write(billingStreet);
-        new TextArea(driver,"Shipping Street").write(shippingStreet);
-        new Input(driver,"Billing City").write(billingCity);
-        new Input(driver,"Billing State/Province").write(billingStateProvince);
-        new Input(driver,"Shipping City").write(shippingCity);
-        new Input(driver,"Shipping State/Province").write(shippingStateProvince);
-        new Input(driver,"Billing Zip/Postal Code").write(billingZipPostalCode);
-        new Input(driver,"Billing Country").write(billingCountry);
-        new Input(driver,"Shipping Zip/Postal Code").write(shippingZipPostalCode);
-        new Input(driver,"Shipping Country").write(shippingCountry);
+        new TextArea(driver,"Billing Street").write(account.getBillingStreet());
+        new TextArea(driver,"Shipping Street").write(account.getShippingStreet());
+        new Input(driver,"Billing City").write(account.getBillingCity());
+        new Input(driver,"Billing State/Province").write(account.getBillingStateProvince());
+        new Input(driver,"Shipping City").write(account.getShippingCity());
+        new Input(driver,"Shipping State/Province").write(account.getShippingStateProvince());
+        new Input(driver,"Billing Zip/Postal Code").write(account.getBillingZipPostalCode());
+        new Input(driver,"Billing Country").write(account.getBillingCountry());
+        new Input(driver,"Shipping Zip/Postal Code").write(account.getShippingZipPostalCode());
+        new Input(driver,"Shipping Country").write(account.getShippingCountry());
         new PickList(driver,"Customer Priority").select("High");
         new PickList(driver,"SLA").select("Gold");
-        new Input(driver,"SLA Serial Number").write(slaSerialNumber);
-        new Input(driver,"Number of Locations").write(numberOfLocations);
+        new Input(driver,"SLA Serial Number").write(account.getSlaSerialNumber());
+        new Input(driver,"Number of Locations").write(account.getNumberOfLocations());
         new PickList(driver,"Active").select("Yes");
         new PickList(driver,"Upsell Opportunity").select("No");
-        new TextArea(driver,"Description").write(description);
+        new TextArea(driver,"Description").write(account.getDescription());
         return this;
     }
     public void saveDate() {
+        log.info("Saving date for an account");
         driver.findElement(SAVE_BUTTON).click();
     }
 
     public String getTitle() {
+        log.info("Getting title after saving");
         waitForPageLoaded();
         return driver.findElement(TITLE).getText();
     }

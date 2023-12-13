@@ -1,5 +1,6 @@
 package tests;
 
+import dto.Account;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
@@ -13,6 +14,32 @@ public class AccountTest extends BaseTest{
     @Test
     public void createAccount() {
 
+        Account account = Account.builder()
+                .accountName("Anna")
+                .accountNumber("12345645")
+                .phone("3752985555")
+                .fax("3658554")
+                .website("www.tms.by")
+                .accountSite("www.tms.by/gfgf")
+                .tickerSymbol("5555")
+                .employees("50")
+                .annualRevenue("150000")
+                .sicCode("4545")
+                .billingCity("Lenina,12")
+                .billingStateProvince("New Minsk")
+                .shippingCity("Minsk")
+                .shippingCity("Minsk")
+                .shippingStateProvince("New MinskCity")
+                .billingZipPostalCode("454")
+                .billingCountry("Belarus")
+                .shippingZipPostalCode("5465465")
+                .shippingCountry("China")
+                .slaSerialNumber("15615")
+                .numberOfLocations("54")
+                .billingStreet("New Street")
+                .shippingStreet("Old Street")
+                .description("Dangerous cargo!!")
+                .build();
         loginPage.
                 open().
                 login("drak@tms.sandbox","Password01!!").
@@ -25,11 +52,7 @@ public class AccountTest extends BaseTest{
 
         accountCreationPage.
                 open().
-                createAccount("Anna", "12345645", "3752985555", "3658554",
-                "www.tms.by", "www.tms.by/gfgf", "5555", "50", "150000",
-                "4545", "Lenina,12", "New Minsk","Minsk", "New MinskCity",
-                "454","Belarus", "5465465", "China", "15615",
-                "54", "New Street", "Old Street", "Dangerous cargo!!").
+                createAccount(account).
                 saveDate();
 
         assertEquals(accountCreationPage.getTitle(),"Activity", "The account has not been created");
