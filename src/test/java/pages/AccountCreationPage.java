@@ -34,7 +34,7 @@ public class AccountCreationPage extends BasePage{
         new Input(driver,"Website").write(account.getWebsite());
         new Input(driver,"Account Site").write(account.getAccountSite());
         new Input(driver,"Ticker Symbol").write(account.getTickerSymbol());
-        new PickList(driver,"Type").select("Technology Partner");
+        new PickList(driver,"Type").select("Other");
         new PickList(driver,"Ownership").select("Public");
         new Input(driver,"Employees").write(account.getEmployees());
         new Input(driver,"Annual Revenue").write(account.getAnnualRevenue());
