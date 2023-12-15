@@ -4,6 +4,7 @@ import dto.Account;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import wrappers.Input;
 import wrappers.PickList;
@@ -34,8 +35,8 @@ public class AccountCreationPage extends BasePage{
         new Input(driver,"Website").write(account.getWebsite());
         new Input(driver,"Account Site").write(account.getAccountSite());
         new Input(driver,"Ticker Symbol").write(account.getTickerSymbol());
-        new PickList(driver,"Type").select("Other");
-        new PickList(driver,"Ownership").select("Public");
+        new PickList(driver,"Type").select("Installation Partner");
+        new PickList(driver,"Ownership").select("Private");
         new Input(driver,"Employees").write(account.getEmployees());
         new Input(driver,"Annual Revenue").write(account.getAnnualRevenue());
         new Input(driver,"SIC Code").write(account.getSicCode());
