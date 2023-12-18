@@ -8,16 +8,13 @@ public final class PropertyReader {
     private static String propertiesPath = "/config.properties";
     private static volatile Properties properties;
     private static InputStream inputStream;
-
     private PropertyReader() {
     }
-
     private static String getCorrectPath() {
         if (propertiesPath.charAt(0) != '/')
             propertiesPath = "/" + propertiesPath;
         return propertiesPath;
     }
-
     public static Properties readProperties() {
         properties = new Properties();
         try {
@@ -39,11 +36,9 @@ public final class PropertyReader {
         }
         return properties;
     }
-
     private static Properties loadProperties() {
         return properties != null ? properties : readProperties();
     }
-
     public static Properties getProperties(String path) {
         propertiesPath = path;
         return readProperties();
