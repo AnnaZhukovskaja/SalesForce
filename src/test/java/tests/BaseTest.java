@@ -41,6 +41,9 @@ public abstract class BaseTest {
 
         loginPage = new LoginPage(driver);
         accountPage = new AccountPage(driver);
+
+        System.out.println(System.getenv("user"));
+        System.out.println(System.getenv("password"));
     }
 
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
