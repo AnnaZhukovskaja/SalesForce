@@ -5,13 +5,14 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.PropertyReader;
 
 import java.time.Duration;
 @Log4j2
 public abstract class BasePage {
 
     WebDriver driver;
-    final String BASE_URL = "https://tms41-dev-ed.lightning.force.com/";
+    final String BASE_URL = PropertyReader.getProperty("sf.base.url");
     WebDriverWait wait;
 
     BasePage(WebDriver driver) {

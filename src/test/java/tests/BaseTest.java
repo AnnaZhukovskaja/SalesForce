@@ -11,6 +11,7 @@ import org.testng.annotations.*;
 import pages.AccountCreationPage;
 import pages.ContactCreationPage;
 import pages.LoginPage;
+import utils.PropertyReader;
 
 
 import java.time.Duration;
@@ -48,7 +49,9 @@ public abstract class BaseTest {
         accountCreationPage = new AccountCreationPage(driver);
         contactCreationPage = new ContactCreationPage(driver);
 
+        String user = System.getenv().getOrDefault("user", PropertyReader.getProperty("sf.user"));
         System.out.println(System.getenv("user"));
+        String password = System.getenv().getOrDefault("password", PropertyReader.getProperty("sf.password"));
         System.out.println(System.getenv("password"));
 
     }
