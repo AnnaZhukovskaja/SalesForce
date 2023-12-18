@@ -48,7 +48,6 @@ public final class PropertyReader {
         propertiesPath = path;
         return readProperties();
     }
-
     public static String getProperty(String propertyName) {
         return loadProperties().getProperty(propertyName);
     }
