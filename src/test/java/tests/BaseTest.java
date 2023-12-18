@@ -50,9 +50,9 @@ public abstract class BaseTest {
         contactCreationPage = new ContactCreationPage(driver);
 
         String user = System.getenv().getOrDefault("user", PropertyReader.getProperty("sf.user"));
-        System.out.println(System.getenv("user"));
+        System.out.println(System.getenv(user));
         String password = System.getenv().getOrDefault("password", PropertyReader.getProperty("sf.password"));
-        System.out.println(System.getenv("password"));
+        System.out.println(System.getenv(password));
 
     }
 
