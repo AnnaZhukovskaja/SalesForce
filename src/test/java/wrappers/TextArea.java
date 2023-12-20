@@ -12,7 +12,6 @@ public class TextArea {
         this.driver=driver;
         this.label = label;
     }
-
     public void write(String text) {
         log.info("Writing '{}' inside textarea '{}'",text,label);
         driver.findElement(By.xpath(String.format("//*[text()='%s']/ancestor::lightning-textarea//textarea",label))).sendKeys(text);
