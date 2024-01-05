@@ -9,7 +9,7 @@ public class ContactTest extends BaseTest{
     public void createContact() {
         loginPage.
                 open().
-                login("drak@tms.sandbox","Password01!!" ).
+                login(user,password).
                 isPageOpened();
         contactCreationPage.
                 open().

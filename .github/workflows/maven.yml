@@ -31,4 +31,7 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean test -Duser=$USER -Dpassword=$PASSWORD
+      env:
+        USER: ${{ secrets.SF_USER }}
+        PASSWORD: ${{ secrets.SF_PASSWORD }}
 

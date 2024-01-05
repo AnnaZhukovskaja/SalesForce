@@ -42,7 +42,7 @@ public class AccountTest extends BaseTest{
                 .build();
         loginPage.
                 open().
-                login("drak@tms.sandbox","Password01!!").
+                login(user,password).
                 isPageOpened();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
