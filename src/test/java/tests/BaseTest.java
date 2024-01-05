@@ -24,6 +24,8 @@ public abstract class BaseTest {
     LoginPage loginPage;
     AccountCreationPage accountCreationPage;
     ContactCreationPage contactCreationPage;
+    String user;
+    String password;
 
     @Parameters({"browser"})
     @BeforeMethod(description = "Настройка браузера")
@@ -49,11 +51,16 @@ public abstract class BaseTest {
         accountCreationPage = new AccountCreationPage(driver);
         contactCreationPage = new ContactCreationPage(driver);
 
-        String user = System.getenv().getOrDefault("user", PropertyReader.getProperty("sf.user"));
+        user = System.getProperty("user", PropertyReader.getProperty("sf.user"));
         System.out.println(System.getenv(user));
-        String password = System.getenv().getOrDefault("password", PropertyReader.getProperty("sf.password"));
+        password = System.getProperty("password", PropertyReader.getProperty("sf.password"));
         System.out.println(System.getenv(password));
 
+//        user = System.getenv().getOrDefault("user", PropertyReader.getProperty("sf.user"));
+//        System.out.println(System.getenv(user));
+//        password = System.getenv().getOrDefault("password", PropertyReader.getProperty("sf.password"));
+//        System.out.println(System.getenv(password));
+        //System.getProperty("username", propertyReader.getPropertyValueByKey("username"));
     }
 
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
